@@ -1,0 +1,46 @@
+.container {
+    margin: auto;
+    padding: 3%;
+}
+
+.container-template {
+    margin: auto;
+    padding: 4%;
+}
+
+.container-template button {
+    margin-right: 10px;
+}
+
+.fill-space {
+    float: right;
+}
+
+.bg-color {
+    background: #ffffff;
+    opacity: .8;
+    max-width: 40% !important;
+}
+
+.col-min-width {
+    min-width: 70%;
+}
+
+.bg-color a {
+    cursor: pointer;
+    color: black;
+}
+
+.bg-color a:hover {
+    text-decoration-line: underline;
+    color: green;
+}
+
+.example-full-width {
+    width: 100%;
+}
+
+.size-increase {
+    max-width: 10%;
+    max-height: 10%;
+}

@@ -1,0 +1,28 @@
+<div class="border border-dark rounded m-3 p-3 mx-auto bg-color">
+    <h3 class="mt-5">Login</h3>
+    <hr>
+    <form [formGroup]="login" (ngSubmit)="onSubmit()">
+        <div>
+            <mat-form-field>
+                <input matInput placeholder="Enter your Mobile Number" formControlName="mobile">
+                <mat-error *ngIf="login.get('mobile').hasError('required') || login.get('mobile').hasError('minlength') || login.get('mobile').hasError('maxlength')">Enter a valid number</mat-error>
+            </mat-form-field>
+            <mat-form-field style=" display : block ">
+                <input matInput placeholder="Enter your password " formControlName="password" [type]="hide ? 'text' : 'password' ">
+                <mat-icon matSuffix (mouseup)="hide=!hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+                <mat-error *ngIf="login.get('password').hasError('required')">Password is Required</mat-error>
+            </mat-form-field>
+        </div>
+        <div>
+            <span class="example-fill-remaining-space">
+              <a mat-list-item (click)="openDialog()">Forget Password</a>
+          </span>
+            <span>
+            <button mat-raised-button type="submit" color="primary" class="mb-5" [disabled]="login.invalid ">Sign In</button>
+          </span>
+        </div>
+        <span>
+          For Sign Up, Please <a routerLink="/register">click here</a>
+      </span>
+    </form>
+</div>

@@ -1,0 +1,29 @@
+<div class="container border border-dark rounded mx-auto m-3 bg-color" style="max-width: 60%">
+    <h3 class="mt-5">Registration Form</h3>
+    <hr/>
+    <form [formGroup]="signup" (ngSubmit)="onSubmit()">
+        <div>
+            <mat-form-field>
+                <input matInput placeholder="Enter your Full Name" formControlName="name">
+                <mat-error *ngIf="signup.get('name').hasError('required')">Name is Required</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Enter your email" formControlName="email">
+                <mat-error *ngIf="signup.get('email').invalid">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Enter your Mobile Number" formControlName="mobile">
+                <mat-error *ngIf="signup.get('mobile').hasError('required') || signup.get('mobile').hasError('minlength') || signup.get('mobile').hasError('maxlength')">Enter a valid number</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Enter your password " formControlName="password" [type]="hide ? 'text' : 'password' ">
+                <mat-icon matSuffix (mouseup)="hide=!hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+                <mat-error *ngIf="signup.get('password').hasError('required')">Password is Required</mat-error>
+            </mat-form-field>
+        </div>
+        <span>
+          <button mat-raised-button color="primary" type="submit " [disabled]="signup.invalid ">Sign Up</button>
+        </span>
+        <div class="mb-5"></div>
+    </form>
+</div>

@@ -1,0 +1,101 @@
+<div class="container border">
+    <h3>{{option}}</h3>
+    <div class="row">
+        <div class="col-sm-3 border border-dark bg-color">
+            <mat-list>
+                <a (click)="accounts('Notification')">
+                    <mat-list-item>Notification</mat-list-item>
+                </a>
+                <mat-divider></mat-divider>
+                <a (click)="confirm('Confirmed Job')">
+                    <mat-list-item>Confirmed Job</mat-list-item>
+                </a>
+            </mat-list>
+        </div>
+        <div class="col-sm-9 table-responsive border border-dark bg-color col-min-width ml-4">
+            <ng-template [ngIf]="option == 'Notification'">
+                <div class="container-template">
+                    <h3>Notification</h3>
+                    <mat-divider></mat-divider>
+                    <table class="table table-bordered" *ngIf="jobs.length != 0;else error">
+                        <thead>
+                            <tr>
+                                <th>Job ID</th>
+                                <th>Description</th>
+                                <th>Address</th>
+                                <th>Date</th>
+                                <th>Request</th>
+                            </tr>
+                        </thead>
+                        <tbody *ngFor="let job of jobs">
+                            <tr>
+                                <td>{{job.job_id}}</td>
+                                <td>{{job.description}}</td>
+                                <td>{{job['address'].landmark}}</td>
+                                <td>{{job.dateofjob}}</td>
+                                <td><a (click)="createRequest(job)">Request</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <ng-template #error>
+                        <h6 style="color: red">Sorry, there are no availables.</h6>
+                    </ng-template>
+                </div>
+            </ng-template>
+            <ng-template [ngIf]='option=="Request"'>
+                <form [formGroup]="request" class="container-template" (ngSubmit)="postRequest()">
+                    <h3>Requested Job</h3>
+                    <mat-divider></mat-divider>
+                    <div formGroupName="labour">
+                        <input formControlName="mobile" hidden>
+                    </div>
+                    <div formGroupName="job">
+                        <mat-form-field class="example-full-width">
+                            <input matInput placeholder="Job Id" formControlName="job_id" readonly>
+                        </mat-form-field>
+                    </div>
+                    <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Estimated Price" formControlName="estimatedPrice">
+                        <mat-error *ngIf="request.get('estimatedPrice').hasError('required')">Please enter a price</mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Status" formControlName="status" value="Pending" readonly>
+                    </mat-form-field>
+                    <button mat-raised-button color="primary" type="submit" [disabled]="request?.invalid">Submit</button>
+                    <button mat-raised-button color="primary" (click)="accounts('New Job')">Cancel</button>
+                </form>
+            </ng-template>
+            <ng-template [ngIf]="option == 'Confirmed Job'">
+                <div class="container-template">
+                    <h3>Your Jobs</h3>
+                    <mat-divider></mat-divider>
+                    <table class="table table-bordered" *ngIf="confirmJobs.length != 0;else error">
+                        <thead>
+                            <tr>
+                                <th>Job ID</th>
+                                <th>User Name</th>
+                                <th>Mobile Number</th>
+                                <th>Address</th>
+                                <th>Date</th>
+                                <th>Done</th>
+                            </tr>
+                        </thead>
+                        <tbody *ngFor="let job of confirmJobs">
+                            <tr>
+                                <td>{{job['job'].job_id}}</td>
+                                <td>{{job['user'].name}}</td>
+                                <td>{{job['user'].mobile}}</td>
+                                <td>{{job['job'].address.house}}, {{job['job'].address.landmark}}</td>
+                                <td>{{job['job'].dateofjob}}</td>
+                                <td><a>Confirm</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <ng-template #error>
+                        <h6 style="color: red">Sorry, there are no availables.</h6>
+                    </ng-template>
+                </div>
+            </ng-template>
+        </div>
+    </div>
+</div>

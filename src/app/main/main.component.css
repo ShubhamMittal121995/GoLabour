@@ -1,0 +1,44 @@
+.anchor-decoration {
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+}
+
+.bottom {
+    border-bottom: 1px solid gray;
+}
+
+.display {
+    float: left;
+}
+
+.header1 a {
+    margin-right: 15px;
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+    font-size: 75%;
+}
+
+mat-sidenav {
+    width: 250px;
+}
+
+.header1 a:hover {
+    text-decoration-line: underline;
+    color: green;
+}
+
+.profile {
+    font-size: 120%;
+    display: block;
+    margin: auto;
+}
+
+.footer {
+    position: relative;
+    ;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}

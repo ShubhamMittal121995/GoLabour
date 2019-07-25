@@ -1,0 +1,22 @@
+a {
+    cursor: default;
+}
+
+a:hover {
+    color: blue;
+}
+
+button {
+    width: 100px;
+    text-align: center;
+}
+
+mat-form-field {
+    display: block;
+}
+
+.bg-color {
+    background: #ffffff;
+    opacity: .8;
+    max-width: 40% !important;
+}

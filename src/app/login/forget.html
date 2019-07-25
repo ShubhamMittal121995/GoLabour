@@ -1,0 +1,13 @@
+<div mat-dialog-title>
+    <b>Forget Password</b>
+    <span class="float-right"><button mat-button (click)="onClick()"><i class="material-icons">close</i></button></span>
+</div>
+<div mat-dialog-content>
+    <mat-form-field style="display : block">
+        <input matInput placeholder="Enter your Mobile" [formControl]="mobile">
+        <mat-error *ngIf="mobile.hasError('required') || mobile.hasError('minlength') || mobile.hasError('maxlength')">Enter a valid number</mat-error>
+    </mat-form-field>
+</div>
+<div mat-dialog-actions>
+    <button mat-raised-button color="primary" [disabled]="mobile?.invalid" [mat-dialog-close]="mobile">Send Password</button>
+</div>

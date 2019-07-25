@@ -1,0 +1,28 @@
+.example-fill-remaining-space a {
+    cursor: pointer;
+    color: blue
+}
+
+.container a:hover {
+    color: red;
+    text-decoration: none;
+}
+
+button {
+    width: 100px;
+    text-align: center;
+}
+
+.example-fill-remaining-space {
+    float: right;
+}
+
+mat-form-field {
+    display: block;
+}
+
+.bg-color {
+    background: #ffffff;
+    opacity: .8;
+    max-width: 40% !important;
+}

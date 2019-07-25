@@ -1,0 +1,56 @@
+<mat-toolbar class="d-flex">
+    <mat-toolbar-row>
+        <button mat-icon-button (click)="sidenav.toggle()" color="primary">
+            <mat-icon >menu</mat-icon>
+          </button>
+        <a class="anchor-decoration" routerLink="/Home">GoLabour</a>
+        <div style="flex: 1 1 auto"></div>
+        <div class="header1" *ngIf="!isLogin()">
+            <a class="anchor-decoration" routerLink="/Login">
+                Login/Register</a>
+            <button mat-raised-button color="primary" routerLink="/labourLogin">List for Labour</button>
+        </div>
+        <div *ngIf="isLogin()">
+            <button mat-raised-button color="primary" (click)="onLogout()"><mat-icon>launch</mat-icon>Log Out</button>
+        </div>
+    </mat-toolbar-row>
+</mat-toolbar>
+<mat-sidenav-container hasBackdrop="true" autosize>
+    <mat-sidenav #sidenav mode="side" class="sidenav">
+        <mat-nav-list *ngIf="!isLogin() ">
+            <img class="profile" src="./assets/icons/profile.png" alt="">
+            <a class="anchor-decoration" mat-list-item routerLink="/Login">
+                Login/Register</a>
+            <a class="anchor-decoration display" mat-list-item routerLink="/MyAccount">
+                <img src="./assets/icons/account.png" alt="">&nbsp;&nbsp;My Account</a>
+        </mat-nav-list>
+        <mat-nav-list *ngIf="isLogin() ">
+            <img class="profile" src="./assets/icons/profile.png" alt="">
+            <p style="text-align:center; font-size: 150%" mat-list-item>
+                {{name}}</p>
+            <a *ngIf="isUser()" class="anchor-decoration display" mat-list-item routerLink="/MyAccount">
+                <img src="./assets/icons/account.png" alt="">&nbsp;&nbsp;My Account</a>
+        </mat-nav-list>
+        <mat-nav-list>
+            <p class="pl-4" mat-list-item><strong>Instructions</strong></p>
+            <a class="anchor-decoration" mat-list-item (click)="instruction1() ">For Employers</a>
+            <a class="anchor-decoration" mat-list-item (click)="instruction2() ">For Employee</a>
+            <a class="anchor-decoration" mat-list-item (click)="help() ">Help</a>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content style="background:url(./assets/images/concrete.jpg);">
+        <router-outlet style=" min-height: 90% !important"></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>
+<div class="footer">
+    <mat-toolbar>
+        <mat-toolbar-row>
+            <a class="m-auto anchor-decoration " (click)="scroll() ">
+                <i class="material-icons ">arrow_upward</i>
+            </a>
+        </mat-toolbar-row>
+        <mat-toolbar-row>
+            <p mat-menu-item class="m-auto ">©GoLabour Designed by <b> C-DAC </b></p>
+        </mat-toolbar-row>
+    </mat-toolbar>
+</div>
